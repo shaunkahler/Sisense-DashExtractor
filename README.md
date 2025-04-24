@@ -1,4 +1,4 @@
-# 🧠 Sisense Dashboard Data Extractor
+# Sisense Dashboard Data Extractor
 
 A simple, powerful Python script to extract widget- and dashboard-level metadata from your Sisense `.dash` (JSON) files and output it all to a single CSV for easy reference.
 
