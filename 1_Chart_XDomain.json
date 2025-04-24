@@ -1,0 +1,3059 @@
+{
+  "title": "1_Chart_XDomain",
+  "oid": "5ddc6a153bb3ff20cc65483b",
+  "desc": "",
+  "source": "5ddc6a153bb3ff20cc65483c",
+  "type": "dashboard",
+  "style": {
+    "name": "vivid",
+    "palette": {
+      "_id": "5ddc06af132ce704ec637d09",
+      "colors": [
+        "#008ceb",
+        "#1ada9e",
+        "#fac500",
+        "#ff785e",
+        "#8e4492",
+        "#3fc5ff",
+        "#ffe69c",
+        "#ee6191",
+        "#6fe0dd",
+        "#0069b2"
+      ],
+      "name": "Clarity 4",
+      "isDefault": true,
+      "sortOrder": 1
+    }
+  },
+  "layout": {},
+  "original": null,
+  "dataExploration": false,
+  "datasource": {
+    "title": "GLAD TN_SHELBY restored",
+    "fullname": "live:GLAD TN_SHELBY restored",
+    "id": "live:GLAD TN_SHELBY restored",
+    "live": true
+  },
+  "filters": [],
+  "editing": false,
+  "widgets": [
+    {
+      "title": "Chart 83 - How are class grades related to suspension and detention rates?",
+      "subtype": "column/classic",
+      "oid": "5de57ff2fab3481b9c491352",
+      "desc": "in-quarter detention/suspension rate and in-quarter GPA",
+      "source": "5de57ff2fab3481b9c491353",
+      "datasource": {
+        "title": "GLAD TN_SHELBY restored",
+        "fullname": "live:GLAD TN_SHELBY restored",
+        "id": "live:GLAD TN_SHELBY restored",
+        "live": true
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "categories",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE_POINTS",
+                  "dim": "[Fact Course Grades.COURSE_GRADE_POINTS]",
+                  "datatype": "numeric",
+                  "title": "COURSE_GRADE_POINTS"
+                },
+                "field": {
+                  "id": "[Fact Course Grades.COURSE_GRADE_POINTS]_avg",
+                  "index": 4
+                },
+                "format": {
+                  "mask": {
+                    "abbreviations": {
+                      "t": false,
+                      "b": false,
+                      "m": false,
+                      "k": false
+                    },
+                    "decimals": 2,
+                    "number": {
+                      "separated": true
+                    }
+                  }
+                },
+                "disabled": true
+              },
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE",
+                  "dim": "[Fact Course Grades.COURSE_GRADE]",
+                  "datatype": "text",
+                  "title": "COURSE_GRADE"
+                }
+              }
+            ]
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "type": "measure",
+                  "formula": "count([3A14D-491])",
+                  "context": {
+                    "[68369-A03]": {
+                      "table": "Dim SED",
+                      "column": "STUDENT_UUID",
+                      "dim": "[Dim SED.STUDENT_UUID]",
+                      "datatype": "text",
+                      "title": "# of STUDENT_UUID",
+                      "agg": "countduplicates"
+                    },
+                    "[3A14D-491]": {
+                      "table": "Dim SED",
+                      "column": "STUDENT_UUID",
+                      "dim": "[Dim SED.STUDENT_UUID]",
+                      "datatype": "text",
+                      "title": "STUDENT_UUID"
+                    }
+                  },
+                  "title": "Count Students"
+                },
+                "field": {
+                  "id": "[Dim SED.STUDENT_UUID]",
+                  "index": 0
+                },
+                "disabled": false,
+                "format": {
+                  "mask": {
+                    "type": "number",
+                    "abbreviations": {
+                      "t": true,
+                      "b": true,
+                      "m": true,
+                      "k": true
+                    },
+                    "separated": true,
+                    "decimals": "auto",
+                    "isdefault": true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Behavior Incidents",
+                  "column": "ACTION_TYPE",
+                  "dim": "[Fact Behavior Incidents.ACTION_TYPE]",
+                  "datatype": "text",
+                  "title": "ACTION_TYPE",
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                },
+                "format": {
+                  "members": {
+                    "detention": {
+                      "color": "#008ceb",
+                      "title": "detention",
+                      "sortData": "detention",
+                      "inResultset": true
+                    },
+                    "suspension": {
+                      "color": "#1ada9e",
+                      "title": "suspension",
+                      "sortData": "suspension",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Dim SED",
+                  "column": "SCHOOL_YEARS_AGO",
+                  "dim": "[Dim SED.SCHOOL_YEARS_AGO]",
+                  "datatype": "numeric",
+                  "title": "SCHOOL_YEARS_AGO",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                },
+                "disabled": false
+              },
+              {
+                "jaql": {
+                  "table": "Fact Behavior Incidents",
+                  "column": "ACTION_TYPE",
+                  "dim": "[Fact Behavior Incidents.ACTION_TYPE]",
+                  "datatype": "text",
+                  "title": "ACTION_TYPE",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "suspension",
+                      "detention"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Dim SED",
+                  "column": "OUTCOME",
+                  "dim": "[Dim SED.OUTCOME]",
+                  "datatype": "text",
+                  "title": "OUTCOME",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "current"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Dim SED",
+                  "column": "GRADING_PERIODS_AGO",
+                  "dim": "[Dim SED.GRADING_PERIODS_AGO]",
+                  "datatype": "numeric",
+                  "title": "GRADING_PERIODS_AGO",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0",
+                      "1"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                },
+                "disabled": true
+              },
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE_POINTS",
+                  "dim": "[Fact Course Grades.COURSE_GRADE_POINTS]",
+                  "datatype": "numeric",
+                  "title": "COURSE_GRADE_POINTS",
+                  "filter": {
+                    "explicit": false,
+                    "multiSelection": true,
+                    "exclude": {
+                      "members": [
+                        "N\\A"
+                      ]
+                    }
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "TERM_TYPE",
+                  "dim": "[Fact Course Grades.TERM_TYPE]",
+                  "datatype": "text",
+                  "title": "TERM_TYPE",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "quarter"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/column",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "instanceid": "62C96-2CB0-7F",
+      "style": {
+        "legend": {
+          "enabled": true,
+          "position": "top"
+        },
+        "seriesLabels": {
+          "enabled": false,
+          "rotation": 0,
+          "labels": {
+            "enabled": false,
+            "types": {
+              "count": false,
+              "percentage": false,
+              "relative": false,
+              "totals": false
+            },
+            "stacked": false,
+            "stackedPercentage": false
+          }
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Student Count"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "lineWidth": {
+          "width": "bold"
+        },
+        "markers": {
+          "enabled": false,
+          "fill": "filled",
+          "size": "small"
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "course_grade_points",
+              "title": "COURSE_GRADE_POINTS",
+              "singular": "COURSE_GRADE_POINTS",
+              "plural": "COURSE_GRADE_POINTS"
+            },
+            {
+              "id": "course_grade",
+              "title": "COURSE_GRADE",
+              "singular": "COURSE_GRADE",
+              "plural": "COURSE_GRADE"
+            },
+            {
+              "id": "action_type",
+              "title": "ACTION_TYPE",
+              "singular": "ACTION_TYPE",
+              "plural": "ACTION_TYPE"
+            },
+            {
+              "id": "school_years_ago",
+              "title": "SCHOOL_YEARS_AGO",
+              "singular": "SCHOOL_YEARS_AGO",
+              "plural": "SCHOOL_YEARS_AGO"
+            },
+            {
+              "id": "outcome",
+              "title": "OUTCOME",
+              "singular": "OUTCOME",
+              "plural": "OUTCOME"
+            },
+            {
+              "id": "grading_periods_ago",
+              "title": "GRADING_PERIODS_AGO",
+              "singular": "GRADING_PERIODS_AGO",
+              "plural": "GRADING_PERIODS_AGO"
+            },
+            {
+              "id": "term_type",
+              "title": "TERM_TYPE",
+              "singular": "TERM_TYPE",
+              "plural": "TERM_TYPE"
+            }
+          ]
+        }
+      },
+      "queryStartTime": "2019-12-19T17:04:12",
+      "widgetTimingLoged": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "realTimeRefreshing": false,
+      "refreshRate": 30000,
+      "canEditFilters": true,
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "disableSelctor": false,
+      "chart": {
+        "0": {},
+        "context": {},
+        "length": 1
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "filter",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": 0,
+          "max": 4
+        },
+        "selectorLocked": false
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b",
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/column",
+          "isTypeValid": true
+        }
+      },
+      "script": "/*\nWelcome to your Widget's Script.\n\nTo learn how you can access the Widget and Dashboard objects, see the online documentation at https://developer.sisense.com/pages/viewpage.action?pageId=557127\n*/\n\nwidget.on('ready', function(){\n$('g[class*=highcharts-legend-item][class*=highcharts-column-series][class*=highcharts-color-undefined][class*=highcharts-series-0] text tspan').map(function(i, cell) { \nswitch (cell.innerHTML ) {\ncase \"detention\": cell.innerHTML=\"Detention\";\nbreak;\n}\n});\n$('g[class*=highcharts-legend-item][class*=highcharts-column-series][class*=highcharts-color-undefined][class*=highcharts-series-1] text tspan').map(function(i, cell) { \nswitch (cell.innerHTML ) {\ncase \"suspension\": cell.innerHTML=\"Suspension\";\nbreak;\n}\n});\n});",
+      "displayMenu": true
+    },
+    {
+      "title": "Chart 87 - Grade Distribution by ACT Score",
+      "subtype": "column/stackedcolumn",
+      "oid": "5df93aeeaae7b42d6c67ff2c",
+      "desc": null,
+      "source": "5df93aeeaae7b42d6c67ff2d",
+      "datasource": {
+        "title": "GLAD TN_SHELBY restored",
+        "fullname": "live:GLAD TN_SHELBY restored",
+        "id": "live:GLAD TN_SHELBY restored",
+        "live": true
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "categories",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Student Assessments",
+                  "column": "SCALED_SCORE",
+                  "dim": "[Fact Student Assessments.SCALED_SCORE]",
+                  "datatype": "numeric",
+                  "title": "SCALED_SCORE"
+                }
+              }
+            ]
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "type": "measure",
+                  "formula": "Contribution([B738A-C11])",
+                  "context": {
+                    "[B738A-C11]": {
+                      "table": "Fact Course Grades",
+                      "column": "COURSE_GRADE",
+                      "dim": "[Fact Course Grades.COURSE_GRADE]",
+                      "datatype": "text",
+                      "title": "# of COURSE_GRADE",
+                      "agg": "countduplicates"
+                    }
+                  },
+                  "title": "Contribution([# of COURSE_GRADE])"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 1,
+                    "percent": true,
+                    "percentMultiplier": 100
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE",
+                  "dim": "[Fact Course Grades.COURSE_GRADE]",
+                  "datatype": "text",
+                  "title": "COURSE_GRADE"
+                },
+                "format": {
+                  "members": {
+                    "A": {
+                      "color": "#009688",
+                      "title": "A",
+                      "sortData": "A",
+                      "inResultset": true
+                    },
+                    "B": {
+                      "color": "#77cb4a",
+                      "title": "B",
+                      "sortData": "B",
+                      "inResultset": true
+                    },
+                    "C": {
+                      "color": "#ffd02b",
+                      "title": "C",
+                      "sortData": "C",
+                      "inResultset": true
+                    },
+                    "D": {
+                      "color": "#f77293",
+                      "title": "D",
+                      "sortData": "D",
+                      "inResultset": true
+                    },
+                    "F": {
+                      "color": "#de4496",
+                      "title": "F",
+                      "sortData": "F",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Student Assessments",
+                  "column": "ASSESSMENT_NAME",
+                  "dim": "[Fact Student Assessments.ASSESSMENT_NAME]",
+                  "datatype": "text",
+                  "title": "ASSESSMENT_NAME",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "ACT"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE",
+                  "dim": "[Fact Course Grades.COURSE_GRADE]",
+                  "datatype": "text",
+                  "title": "COURSE_GRADE",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "A",
+                      "B",
+                      "C",
+                      "F",
+                      "D",
+                      "A+",
+                      "A-",
+                      "B+",
+                      "B-",
+                      "C+",
+                      "C-",
+                      "D+",
+                      "D-",
+                      "E",
+                      "N",
+                      "P",
+                      "S"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "TERM_TYPE",
+                  "dim": "[Fact Course Grades.TERM_TYPE]",
+                  "datatype": "text",
+                  "title": "TERM_TYPE",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "quarter"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/column",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "style": {
+        "legend": {
+          "enabled": true,
+          "position": "top"
+        },
+        "seriesLabels": {
+          "enabled": false,
+          "rotation": 0,
+          "labels": {
+            "enabled": true,
+            "stacked": true,
+            "stackedPercentage": false,
+            "types": {
+              "count": false,
+              "relative": false,
+              "percentage": false,
+              "totals": false
+            }
+          }
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "ACT Score"
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": true,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent of Course Grades Received"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false,
+          "max": 1
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "lineWidth": {
+          "width": "bold"
+        },
+        "markers": {
+          "enabled": false,
+          "fill": "filled",
+          "size": "small"
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "scaled_score",
+              "title": "SCALED_SCORE",
+              "singular": "SCALED_SCORE",
+              "plural": "SCALED_SCORE"
+            },
+            {
+              "id": "course_grade",
+              "title": "COURSE_GRADE",
+              "singular": "COURSE_GRADE",
+              "plural": "COURSE_GRADE"
+            },
+            {
+              "id": "assessment_name",
+              "title": "ASSESSMENT_NAME",
+              "singular": "ASSESSMENT_NAME",
+              "plural": "ASSESSMENT_NAME"
+            },
+            {
+              "id": "term_type",
+              "title": "TERM_TYPE",
+              "singular": "TERM_TYPE",
+              "plural": "TERM_TYPE"
+            }
+          ]
+        }
+      },
+      "instanceid": "89C92-2DC9-77",
+      "queryStartTime": "2019-12-19T17:04:12",
+      "widgetTimingLoged": false,
+      "disableSelctor": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "chart": {
+        "0": {},
+        "context": {},
+        "length": 1
+      },
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "realTimeRefreshing": false,
+      "refreshRate": 30000,
+      "canEditFilters": true,
+      "script": "\n\n\n/*\nWelcome to your Widget's Script.\n\nTo learn how you can access the Widget and Dashboard objects, see the online documentation at https://developer.sisense.com/pages/viewpage.action?pageId=557127\n*/\n\nwidget.on(\"beforedatapointtooltip\", ('ready', function(w)) => {\n w.cancel == true\n});\n//params.context.marker.name = \"\";\n\t\t  \n\t\t  \n\t\t  \n\t\t  \n/*\nWelcome to your Widget's Script.\n\nTo learn how you can access the Widget and Dashboard objects, see the online documentation at https://developer.sisense.com/pages/viewpage.action?pageId=557127\n*/\n\n\nvar categories= [];\nvar breakBy = [ 'A', 'E', 'B','S','C', 'N', 'D', 'F','U' ];\n \n\n// ---------- DO NOT EDIT BELOW THIS LINE ----------\n \nvar findIndex = function(val, list) {\n\tif (list=='breakby') { \n\t\treturn breakBy.indexOf(val) \n\t} else if (list=='categories') { \n\t\treturn categories.indexOf(val)\n\t}\n};\n\nwidget.on('processresult',function(se,ev){\n\t//determine if we should sort categories or breakbys\n\tcategoryStatus=false;\n\tbreakStatus=false;\n\t\n\tfor (p=0; p<ev.widget.metadata.panels.length; p++){\n\t\tif (ev.widget.metadata.panels[p].name==\"categories\" && ev.widget.metadata.panels[p].items.length>0 && categories.length>0){\n\t\t\tcategoryStatus=true;\n\t\t}\n\t\telse if (ev.widget.metadata.panels[p].name==\"break by\" && ev.widget.metadata.panels[p].items.length>0 && breakBy.length>0){\n\t\t\tbreakStatus=true;\n\t\t}\n\t};\n\t\n\tif (categoryStatus){\n\t\tev.result.series.forEach( function(bb) {\n\t\t\tnewData= new Array(categories.length);\n\t\t\tvar blankcat;\n\t\t\tbb.data.forEach( function(cat) {\n\t\t\t\tif (typeof cat.selectionData !== 'undefined'){\n\t\t\t\t\tnewData[findIndex(cat.selectionData[0].trim(), 'categories')]=cat;\n\t\t\t\t}\n\t\t\t\telse{\n\t\t\t\t\tblankcat=cat;\t\n\t\t\t\t}\n\t\t\t})\n\t\t\tfor (i=0; i<newData.length; i++) {\n\t\t\t\tif (typeof newData[i] === 'undefined') {\n\t\t\t\t\tnewData[i]=blankcat;\t\n\t\t\t\t}\n\t\t\t}\n\t\t\tbb.data=newData;\n\t\t});\n\t\tev.result.xAxis.categories=categories;\n\t};\n\t\n\tif (breakStatus) {\n\t\tev.result.series.sort(function(a,b){\n\t\t\tif (findIndex(a.name, 'breakby') < findIndex(b.name,'breakby')) {\n\t\t\t\treturn -1\n\t\t\t} else if (findIndex(a.name,'breakby') > findIndex(b.name,'breakby')) {\n\t\t\t\treturn 1\n\t\t\t}\n\t\t\treturn 0;\n\t\t});\n\t};\n});",
+      "displayMenu": true,
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/column",
+          "isTypeValid": true
+        }
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "select",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": 0,
+          "max": 30
+        }
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b"
+    },
+    {
+      "title": "Chart 33 - How does attendance relate to student achievement?",
+      "subtype": "bar/classic",
+      "oid": "5df944fdaae7b42d6c67ff4d",
+      "desc": null,
+      "source": "5df944fdaae7b42d6c67ff4e",
+      "datasource": {
+        "title": "GLAD TN_SHELBY restored",
+        "fullname": "live:GLAD TN_SHELBY restored",
+        "id": "live:GLAD TN_SHELBY restored",
+        "live": true
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "categories",
+            "items": []
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Dim SED",
+                  "column": "ABSENT_RATIO",
+                  "dim": "[Dim SED.ABSENT_RATIO]",
+                  "datatype": "numeric",
+                  "agg": "avg",
+                  "title": "Average Percent of Instructional Time Missed"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 0,
+                    "percent": true,
+                    "percentMultiplier": 100
+                  },
+                  "color_bkp": {
+                    "color": "#008ceb",
+                    "type": "color"
+                  }
+                },
+                "field": {
+                  "id": "[Dim SED.ABSENT_RATIO]_avg",
+                  "index": 1
+                },
+                "disabled": false
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE",
+                  "dim": "[Fact Course Grades.COURSE_GRADE]",
+                  "datatype": "text",
+                  "title": "COURSE_GRADE"
+                },
+                "field": {
+                  "id": "[Fact Course Grades.COURSE_GRADE]",
+                  "index": 0
+                },
+                "format": {
+                  "members": {
+                    "A": {
+                      "color": "#009688",
+                      "title": "A",
+                      "sortData": "A",
+                      "inResultset": true
+                    },
+                    "B": {
+                      "color": "#77cb4a",
+                      "title": "B",
+                      "sortData": "B",
+                      "inResultset": true
+                    },
+                    "C": {
+                      "color": "#ffd02b",
+                      "title": "C",
+                      "sortData": "C",
+                      "inResultset": true
+                    },
+                    "D": {
+                      "color": "#f77293",
+                      "title": "D",
+                      "sortData": "D",
+                      "inResultset": true
+                    },
+                    "E": {
+                      "color": "#009688",
+                      "title": "E",
+                      "sortData": "E",
+                      "inResultset": true
+                    },
+                    "F": {
+                      "color": "#de4496",
+                      "title": "F",
+                      "sortData": "F",
+                      "inResultset": true
+                    },
+                    "N": {
+                      "color": "#ffd02b",
+                      "title": "N",
+                      "sortData": "N",
+                      "inResultset": true
+                    },
+                    "S": {
+                      "color": "#77cb4a",
+                      "title": "S",
+                      "sortData": "S",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Course Grades",
+                  "column": "COURSE_GRADE",
+                  "dim": "[Fact Course Grades.COURSE_GRADE]",
+                  "datatype": "text",
+                  "title": "COURSE_GRADE",
+                  "filter": {
+                    "top": 5,
+                    "by": {
+                      "table": "Fact Course Grades",
+                      "column": "STUDENT_UUID",
+                      "dim": "[Fact Course Grades.STUDENT_UUID]",
+                      "datatype": "text",
+                      "agg": "count",
+                      "title": "fcg # of unique STUDENT_UUID"
+                    }
+                  },
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  },
+                  "collapsed": false
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEARS_AGO",
+                  "dim": "[Dim Dates.SCHOOL_YEARS_AGO]",
+                  "datatype": "numeric",
+                  "title": "SCHOOL_YEARS_AGO",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "1"
+                    ]
+                  },
+                  "collapsed": true,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/bar",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "style": {
+        "legend": {
+          "enabled": true,
+          "position": "top"
+        },
+        "seriesLabels": {
+          "enabled": true,
+          "rotation": 0,
+          "labels": {
+            "enabled": false,
+            "types": {
+              "count": false,
+              "percentage": false,
+              "relative": false,
+              "totals": false
+            },
+            "stacked": false,
+            "stackedPercentage": false
+          }
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": false,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": true,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent of Instructional Time Missed"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "course_grade",
+              "title": "COURSE_GRADE",
+              "singular": "COURSE_GRADE",
+              "plural": "COURSE_GRADE"
+            },
+            {
+              "id": "school_years_ago",
+              "title": "SCHOOL_YEARS_AGO",
+              "singular": "SCHOOL_YEARS_AGO",
+              "plural": "SCHOOL_YEARS_AGO"
+            }
+          ]
+        }
+      },
+      "instanceid": "57969-68AA-F5",
+      "queryStartTime": "2019-12-19T17:07:39",
+      "disableSelctor": false,
+      "widgetTimingLoged": false,
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "chart": {
+        "0": {},
+        "context": {},
+        "length": 1
+      },
+      "realTimeRefreshing": false,
+      "refreshRate": 30000,
+      "canEditFilters": true,
+      "displayMenu": true,
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/bar",
+          "isTypeValid": true
+        }
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "select",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": null,
+          "max": null
+        }
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b",
+      "script": "/*\nWelcome to your Widget's Script.\n\nTo learn how you can access the Widget and Dashboard objects, see the online documentation at https://developer.sisense.com/pages/viewpage.action?pageId=557127\n*/\n\n\nvar categories= [];\nvar breakBy = [ 'A', 'E', 'B','S','C', 'N', 'D', 'F','U' ];\n \n\n// ---------- DO NOT EDIT BELOW THIS LINE ----------\n \nvar findIndex = function(val, list) {\n\tif (list=='breakby') { \n\t\treturn breakBy.indexOf(val) \n\t} else if (list=='categories') { \n\t\treturn categories.indexOf(val)\n\t}\n};\n\nwidget.on('processresult',function(se,ev){\n\t//determine if we should sort categories or breakbys\n\tcategoryStatus=false;\n\tbreakStatus=false;\n\t\n\tfor (p=0; p<ev.widget.metadata.panels.length; p++){\n\t\tif (ev.widget.metadata.panels[p].name==\"categories\" && ev.widget.metadata.panels[p].items.length>0 && categories.length>0){\n\t\t\tcategoryStatus=true;\n\t\t}\n\t\telse if (ev.widget.metadata.panels[p].name==\"break by\" && ev.widget.metadata.panels[p].items.length>0 && breakBy.length>0){\n\t\t\tbreakStatus=true;\n\t\t}\n\t};\n\t\n\tif (categoryStatus){\n\t\tev.result.series.forEach( function(bb) {\n\t\t\tnewData= new Array(categories.length);\n\t\t\tvar blankcat;\n\t\t\tbb.data.forEach( function(cat) {\n\t\t\t\tif (typeof cat.selectionData !== 'undefined'){\n\t\t\t\t\tnewData[findIndex(cat.selectionData[0].trim(), 'categories')]=cat;\n\t\t\t\t}\n\t\t\t\telse{\n\t\t\t\t\tblankcat=cat;\t\n\t\t\t\t}\n\t\t\t})\n\t\t\tfor (i=0; i<newData.length; i++) {\n\t\t\t\tif (typeof newData[i] === 'undefined') {\n\t\t\t\t\tnewData[i]=blankcat;\t\n\t\t\t\t}\n\t\t\t}\n\t\t\tbb.data=newData;\n\t\t});\n\t\tev.result.xAxis.categories=categories;\n\t};\n\t\n\tif (breakStatus) {\n\t\tev.result.series.sort(function(a,b){\n\t\t\tif (findIndex(a.name, 'breakby') < findIndex(b.name,'breakby')) {\n\t\t\t\treturn -1\n\t\t\t} else if (findIndex(a.name,'breakby') > findIndex(b.name,'breakby')) {\n\t\t\t\treturn 1\n\t\t\t}\n\t\t\treturn 0;\n\t\t});\n\t};\n});"
+    },
+    {
+      "title": "Chart 107 - How are major disciplinary incidents and attendance related?",
+      "subtype": "line/basic",
+      "oid": "5df94a91f0a8492d28f1f06d",
+      "desc": null,
+      "source": "5df94a91f0a8492d28f1f06e",
+      "datasource": {
+        "title": "GLAD TN_SHELBY restored",
+        "fullname": "live:GLAD TN_SHELBY restored",
+        "id": "live:GLAD TN_SHELBY restored",
+        "live": true
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "x-axis",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "COUNT_MAJOR",
+                  "dim": "[Fact Features.COUNT_MAJOR]",
+                  "datatype": "numeric",
+                  "title": "COUNT_MAJOR"
+                }
+              }
+            ]
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "type": "measure",
+                  "formula": "([B4DB1-BF6] , [B812A-D26] ,  [85214-FA9] )/\n([B4DB1-BF6] ,  [85214-FA9])",
+                  "context": {
+                    "[B4DB1-BF6]": {
+                      "table": "Fact Features",
+                      "column": "STUDENT_UUID",
+                      "dim": "[Fact Features.STUDENT_UUID]",
+                      "datatype": "text",
+                      "title": "# of unique STUDENT_UUID",
+                      "agg": "count"
+                    },
+                    "[B812A-D26]": {
+                      "table": "Fact Features",
+                      "column": "CHRONIC_ABSENT",
+                      "dim": "[Fact Features.CHRONIC_ABSENT]",
+                      "datatype": "numeric",
+                      "title": "CHRONIC_ABSENT",
+                      "filter": {
+                        "explicit": true,
+                        "multiSelection": true,
+                        "members": [
+                          "1"
+                        ]
+                      },
+                      "collapsed": false,
+                      "datasource": {
+                        "title": "GLAD TN_SHELBY restored",
+                        "fullname": "live:GLAD TN_SHELBY restored",
+                        "id": "live:GLAD TN_SHELBY restored",
+                        "live": true,
+                        "lastBuildTime": "2019-10-15T14:45:44"
+                      }
+                    },
+                    "[85214-FA9]": {
+                      "table": "Fact Features",
+                      "column": "OUTCOME",
+                      "dim": "[Fact Features.OUTCOME]",
+                      "datatype": "text",
+                      "title": "OUTCOME",
+                      "filter": {
+                        "explicit": true,
+                        "multiSelection": true,
+                        "members": [
+                          "current"
+                        ]
+                      },
+                      "collapsed": false,
+                      "datasource": {
+                        "title": "GLAD TN_SHELBY restored",
+                        "fullname": "live:GLAD TN_SHELBY restored",
+                        "id": "live:GLAD TN_SHELBY restored",
+                        "live": true,
+                        "lastBuildTime": "2019-10-15T14:45:44"
+                      }
+                    }
+                  },
+                  "title": "Percent of Chronically Absent Students"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 0,
+                    "percent": true,
+                    "percentMultiplier": 100
+                  }
+                },
+                "field": {
+                  "id": "[Fact Features.STUDENT_UUID]_count",
+                  "index": 3
+                }
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEAR_DISPLAY",
+                  "dim": "[Dim Dates.SCHOOL_YEAR_DISPLAY]",
+                  "datatype": "text",
+                  "title": "SCHOOL_YEAR_DISPLAY"
+                },
+                "format": {
+                  "members": {
+                    "2019-2020": {
+                      "color": "#008ceb",
+                      "title": "2019-2020",
+                      "sortData": "2019-2020",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEARS_AGO",
+                  "dim": "[Dim Dates.SCHOOL_YEARS_AGO]",
+                  "datatype": "numeric",
+                  "title": "SCHOOL_YEARS_AGO",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "COUNT_MAJOR",
+                  "dim": "[Fact Features.COUNT_MAJOR]",
+                  "datatype": "numeric",
+                  "title": "COUNT_MAJOR",
+                  "filter": {
+                    "explicit": false,
+                    "multiSelection": true,
+                    "all": true
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                },
+                "title": "COUNT_MAJOR"
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "OUTCOME",
+                  "dim": "[Fact Features.OUTCOME]",
+                  "datatype": "text",
+                  "title": "OUTCOME",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "current"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/line",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "style": {
+        "lineWidth": {
+          "width": "thick"
+        },
+        "legend": {
+          "enabled": true,
+          "position": "top"
+        },
+        "seriesLabels": {
+          "enabled": false,
+          "rotation": 0,
+          "labels": {
+            "enabled": false,
+            "types": {
+              "count": false,
+              "percentage": false,
+              "relative": false,
+              "totals": false
+            },
+            "stacked": false,
+            "stackedPercentage": false
+          }
+        },
+        "markers": {
+          "enabled": true,
+          "fill": "hollow",
+          "size": "large"
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Count of Major Incidents"
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": true,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent Chronically Absent"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "hideMinMax": false,
+          "isIntervalEnabled": true,
+          "min": 0
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "hideMinMax": false,
+          "isIntervalEnabled": true
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "count_major",
+              "title": "COUNT_MAJOR",
+              "singular": "COUNT_MAJOR",
+              "plural": "COUNT_MAJOR"
+            },
+            {
+              "id": "school_year_display",
+              "title": "SCHOOL_YEAR_DISPLAY",
+              "singular": "SCHOOL_YEAR_DISPLAY",
+              "plural": "SCHOOL_YEAR_DISPLAY"
+            },
+            {
+              "id": "school_years_ago",
+              "title": "SCHOOL_YEARS_AGO",
+              "singular": "SCHOOL_YEARS_AGO",
+              "plural": "SCHOOL_YEARS_AGO"
+            },
+            {
+              "id": "outcome",
+              "title": "OUTCOME",
+              "singular": "OUTCOME",
+              "plural": "OUTCOME"
+            }
+          ]
+        }
+      },
+      "instanceid": "F62F4-773A-A4",
+      "queryStartTime": "2019-12-19T17:04:12",
+      "widgetTimingLoged": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "realTimeRefreshing": false,
+      "refreshRate": 30000,
+      "canEditFilters": true,
+      "disableSelctor": false,
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "chart": {
+        "0": {},
+        "context": {},
+        "length": 1
+      },
+      "displayMenu": false,
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/line",
+          "isTypeValid": false
+        }
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "select",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": 0,
+          "max": 18
+        }
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b"
+    },
+    {
+      "title": "Chart 82. Grade Distribution by Attendance",
+      "subtype": "column/stackedcolumn",
+      "oid": "5df94acff0a8492d28f1f071",
+      "desc": null,
+      "source": "5df94acff0a8492d28f1f072",
+      "datasource": {
+        "title": "test_GLAD_TN_SHELBY_schema_2",
+        "fullname": "LocalHost/test_GLAD_TN_SHELBY_schema_2",
+        "id": "aLOCALHOST_aTESTXwAaGLADXwAaTNXwAaSHELBYXwAaSCHEMAXwAa2",
+        "address": "LocalHost",
+        "database": "atestXwAaGLADXwAaTNXwAaSHELBYXwAaschemaXwAa2",
+        "lastBuildTime": "2019-12-17T10:24:40"
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "categories",
+            "items": [
+              {
+                "jaql": {
+                  "table": "course_grades_by_absence_ratio_2",
+                  "column": "avg_absent_ratio",
+                  "dim": "[course_grades_by_absence_ratio_2.avg_absent_ratio]",
+                  "datatype": "numeric",
+                  "title": "Avg. Absent Ratio"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 0,
+                    "percent": true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "type": "measure",
+                  "formula": "CONTRIBUTION(sum([07185-FA9]))",
+                  "context": {
+                    "[07185-FA9]": {
+                      "table": "course_grades_by_absence_ratio_2",
+                      "column": "count_course_grades",
+                      "dim": "[course_grades_by_absence_ratio_2.count_course_grades]",
+                      "datatype": "numeric",
+                      "title": "Count Course Grades"
+                    }
+                  },
+                  "title": "% Course Grades"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 0,
+                    "percent": true,
+                    "percentMultiplier": 100
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "course_grades_by_absence_ratio_2",
+                  "column": "COURSE_GRADE",
+                  "dim": "[course_grades_by_absence_ratio_2.COURSE_GRADE]",
+                  "datatype": "text",
+                  "merged": true,
+                  "title": "COURSE_GRADE"
+                },
+                "format": {
+                  "members": {
+                    "A": {
+                      "color": "#009688",
+                      "title": "A",
+                      "sortData": "A",
+                      "inResultset": true
+                    },
+                    "B": {
+                      "color": "#77cb4a",
+                      "title": "B",
+                      "sortData": "B",
+                      "inResultset": true
+                    },
+                    "C": {
+                      "color": "#ffd02b",
+                      "title": "C",
+                      "sortData": "C",
+                      "inResultset": true
+                    },
+                    "D": {
+                      "color": "#f77293",
+                      "title": "D",
+                      "sortData": "D",
+                      "inResultset": true
+                    },
+                    "F": {
+                      "color": "#de4496",
+                      "title": "F",
+                      "sortData": "F",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "course_grades_by_absence_ratio_2",
+                  "column": "COURSE_GRADE",
+                  "dim": "[course_grades_by_absence_ratio_2.COURSE_GRADE]",
+                  "datatype": "text",
+                  "merged": true,
+                  "title": "COURSE_GRADE",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "F"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "test_GLAD_TN_SHELBY_schema_2",
+                    "fullname": "LocalHost/test_GLAD_TN_SHELBY_schema_2",
+                    "id": "aLOCALHOST_aTESTXwAaGLADXwAaTNXwAaSHELBYXwAaSCHEMAXwAa2",
+                    "address": "LocalHost",
+                    "database": "atestXwAaGLADXwAaTNXwAaSHELBYXwAaschemaXwAa2"
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "course_grades_by_absence_ratio_2",
+                  "column": "avg_absent_ratio",
+                  "dim": "[course_grades_by_absence_ratio_2.avg_absent_ratio]",
+                  "datatype": "numeric",
+                  "title": "avg_absent_ratio",
+                  "filter": {
+                    "explicit": false,
+                    "multiSelection": true,
+                    "exclude": {
+                      "members": [
+                        "N\\A"
+                      ]
+                    }
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "test_GLAD_TN_SHELBY_schema_2",
+                    "fullname": "LocalHost/test_GLAD_TN_SHELBY_schema_2",
+                    "id": "aLOCALHOST_aTESTXwAaGLADXwAaTNXwAaSHELBYXwAaSCHEMAXwAa2",
+                    "address": "LocalHost",
+                    "database": "atestXwAaGLADXwAaTNXwAaSHELBYXwAaschemaXwAa2"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/column",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "style": {
+        "legend": {
+          "enabled": true,
+          "position": "top"
+        },
+        "seriesLabels": {
+          "enabled": false,
+          "rotation": 0,
+          "labels": {
+            "enabled": true,
+            "stacked": true,
+            "stackedPercentage": false,
+            "types": {
+              "count": false,
+              "relative": false,
+              "percentage": false,
+              "totals": false
+            }
+          }
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent of Instructional Time Missed"
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": true,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent of Grades Received"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false,
+          "max": 1
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "lineWidth": {
+          "width": "bold"
+        },
+        "markers": {
+          "enabled": false,
+          "fill": "filled",
+          "size": "small"
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "avg._absent_ratio",
+              "title": "Avg. Absent Ratio",
+              "singular": "Avg. Absent Ratio",
+              "plural": "Avg. Absent Ratio"
+            },
+            {
+              "id": "course_grade",
+              "title": "COURSE_GRADE",
+              "singular": "COURSE_GRADE",
+              "plural": "COURSE_GRADE"
+            },
+            {
+              "id": "avg_absent_ratio",
+              "title": "avg_absent_ratio",
+              "singular": "avg_absent_ratio",
+              "plural": "avg_absent_ratio"
+            }
+          ]
+        }
+      },
+      "instanceid": "5DDFB-FA22-0A",
+      "queryStartTime": "2019-12-19T17:04:12",
+      "widgetTimingLoged": false,
+      "disableSelctor": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "chart": {
+        "0": {},
+        "context": {},
+        "length": 1
+      },
+      "canEditFilters": true,
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "realTimeRefreshing": false,
+      "script": "widget.on(\"beforedatapointtooltip\", function(w, args){\n\t//console.log(args.template)\n args.template = args.template.replace(\"/ {{item.percentage}}\", \"\");\n})\n\nwidget.on('ready', function(){\n$('g[class*=highcharts-axis-labels][class*=highcharts-xaxis-labels] text').map(function(i, cell) { \nswitch (cell.innerHTML ) {\ncase \"100%\": cell.innerHTML=\"> 50%\";\nbreak;\n}\n}) \n});",
+      "displayMenu": true,
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/column",
+          "isTypeValid": true
+        }
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "select",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": 0,
+          "max": 25
+        }
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b"
+    },
+    {
+      "title": "Chart 103 - How are chronic absence rates and ACT and SAT participation related?",
+      "subtype": "column/classic",
+      "oid": "5dfc48cd9405e52ce4495a4f",
+      "desc": null,
+      "source": "5dfc48cd9405e52ce4495a50",
+      "datasource": {
+        "title": "GLAD TN_SHELBY restored",
+        "fullname": "live:GLAD TN_SHELBY restored",
+        "id": "live:GLAD TN_SHELBY restored",
+        "live": true
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "categories",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEAR_DISPLAY",
+                  "dim": "[Dim Dates.SCHOOL_YEAR_DISPLAY]",
+                  "datatype": "text",
+                  "title": "School Year"
+                },
+                "format": {
+                  "members": {
+                    "0": {
+                      "color": "#fac500",
+                      "title": "0",
+                      "sortData": 0
+                    },
+                    "1": {
+                      "color": "#ff595d",
+                      "title": "1",
+                      "sortData": 1
+                    },
+                    "2019-2020": {
+                      "color": "#008ceb",
+                      "title": "2019-2020",
+                      "sortData": "2019-2020",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "type": "measure",
+                  "formula": "([FAE1C-DAB] , [2E5DA-607]) /\n([FAE1C-DAB])",
+                  "context": {
+                    "[FAE1C-DAB]": {
+                      "table": "Fact Features",
+                      "column": "STUDENT_UUID",
+                      "dim": "[Fact Features.STUDENT_UUID]",
+                      "datatype": "text",
+                      "title": "# of unique STUDENT_UUID",
+                      "agg": "count"
+                    },
+                    "[2E5DA-607]": {
+                      "table": "Fact Features",
+                      "column": "SAT_ACT_TAKEN",
+                      "dim": "[Fact Features.SAT_ACT_TAKEN]",
+                      "datatype": "numeric",
+                      "title": "SAT_ACT_TAKEN",
+                      "filter": {
+                        "explicit": true,
+                        "multiSelection": true,
+                        "members": [
+                          "1"
+                        ]
+                      },
+                      "collapsed": false,
+                      "datasource": {
+                        "title": "GLAD TN_SHELBY restored",
+                        "fullname": "live:GLAD TN_SHELBY restored",
+                        "id": "live:GLAD TN_SHELBY restored",
+                        "live": true
+                      }
+                    }
+                  },
+                  "title": "Percent Taking SAT_ACT"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 0,
+                    "percent": true,
+                    "percentMultiplier": 100
+                  },
+                  "color_bkp": {
+                    "color": "#008ceb",
+                    "type": "color"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "CHRONIC_ABSENT",
+                  "dim": "[Fact Features.CHRONIC_ABSENT]",
+                  "datatype": "numeric",
+                  "title": "CHRONIC_ABSENT"
+                },
+                "format": {
+                  "members": {
+                    "0": {
+                      "color": "#008ceb",
+                      "title": "0",
+                      "sortData": 0,
+                      "inResultset": true
+                    },
+                    "1": {
+                      "color": "#1ada9e",
+                      "title": "1",
+                      "sortData": 1,
+                      "inResultset": true
+                    },
+                    "2019-2020": {
+                      "color": "#008ceb",
+                      "title": "2019-2020",
+                      "sortData": "2019-2020"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "CHRONIC_ABSENT",
+                  "dim": "[Fact Features.CHRONIC_ABSENT]",
+                  "datatype": "numeric",
+                  "title": "CHRONIC_ABSENT",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0",
+                      "1"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "OUTCOME",
+                  "dim": "[Fact Features.OUTCOME]",
+                  "datatype": "text",
+                  "title": "OUTCOME",
+                  "filter": {
+                    "explicit": false,
+                    "multiSelection": true,
+                    "exclude": {
+                      "members": [
+                        "dropout",
+                        "graduated"
+                      ]
+                    }
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEARS_AGO",
+                  "dim": "[Dim Dates.SCHOOL_YEARS_AGO]",
+                  "datatype": "numeric",
+                  "title": "SCHOOL_YEARS_AGO",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "CLASS_NUMBER",
+                  "dim": "[Fact Features.CLASS_NUMBER]",
+                  "datatype": "numeric",
+                  "title": "CLASS_NUMBER",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "9",
+                      "10",
+                      "11",
+                      "12"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "LATEST_RUN",
+                  "dim": "[Fact Features.LATEST_RUN]",
+                  "datatype": "text",
+                  "title": "LATEST_RUN",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "true"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/column",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "style": {
+        "legend": {
+          "enabled": true,
+          "position": "bottom"
+        },
+        "seriesLabels": {
+          "enabled": true,
+          "rotation": 0,
+          "labels": {
+            "enabled": false,
+            "stacked": false,
+            "stackedPercentage": false,
+            "types": {
+              "count": false,
+              "relative": false,
+              "percentage": false,
+              "totals": false
+            }
+          }
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": false,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": true,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent of Students Taking the SAT or ACT"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "min": 0,
+          "hideMinMax": false
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "lineWidth": {
+          "width": "thick"
+        },
+        "markers": {
+          "enabled": true,
+          "fill": "filled",
+          "size": "large"
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "school_year",
+              "title": "School Year",
+              "singular": "School Year",
+              "plural": "School Year"
+            },
+            {
+              "id": "chronic_absent",
+              "title": "CHRONIC_ABSENT",
+              "singular": "CHRONIC_ABSENT",
+              "plural": "CHRONIC_ABSENT"
+            },
+            {
+              "id": "outcome",
+              "title": "OUTCOME",
+              "singular": "OUTCOME",
+              "plural": "OUTCOME"
+            },
+            {
+              "id": "school_years_ago",
+              "title": "SCHOOL_YEARS_AGO",
+              "singular": "SCHOOL_YEARS_AGO",
+              "plural": "SCHOOL_YEARS_AGO"
+            },
+            {
+              "id": "class_number",
+              "title": "CLASS_NUMBER",
+              "singular": "CLASS_NUMBER",
+              "plural": "CLASS_NUMBER"
+            },
+            {
+              "id": "latest_run",
+              "title": "LATEST_RUN",
+              "singular": "LATEST_RUN",
+              "plural": "LATEST_RUN"
+            }
+          ]
+        }
+      },
+      "instanceid": "9E056-87AB-2A",
+      "queryStartTime": "2019-12-19T23:06:48",
+      "disableSelctor": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "chart": {
+        "0": {
+          "sizzle-1576814714552": {
+            "parentNode": [
+              "2545 26",
+              34
+            ]
+          }
+        },
+        "context": {
+          "sizzle-1576814714552": {
+            "parentNode": [
+              "2545 26",
+              34
+            ]
+          }
+        },
+        "length": 1
+      },
+      "widgetTimingLoged": false,
+      "canEditFilters": true,
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "realTimeRefreshing": false,
+      "refreshRate": 30000,
+      "script": "/* List of labels old = new */\nconst newLabels = {\n\t'0':'Not Chronically Absent',\n\t'1':'Chronically Absent',\n};\n\n\n/* Rename x-axis categories:\n\t1 category: working\n\t2 categories - position 1: Not working\n\t2 categories - position 2: working\n*/\n\nwidget.on('processresult', function (se, ev) {\n\t\n\tvar dbLabels = ev.result.xAxis.categories;\n\n\tdbLabels.forEach((VALUE, index) => { \n\t\t\t\t\n\t\t if (newLabels[VALUE] !== undefined) {\n\t\t\t dbLabels[index] = newLabels[VALUE];\n\t\t } else {\n\t\t\tconsole.log('undef label');\n\t\t }\n\t });\n});\n\n/* Rename break-by */\nwidget.on('processresult', function (se, ev) {\n\t\t\n\tvar dbLabels = ev.result.series;\n\n\tdbLabels.forEach((VALUE, index) => {\n\n\t\t if (newLabels[VALUE.name] !== undefined) {\n\t\t\t dbLabels[index].name = newLabels[VALUE.name];\n\t\t } else {\n\t\t\tconsole.log('undef label');\n\t\t }\n\t});\n});\n",
+      "displayMenu": true,
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/column",
+          "isTypeValid": true
+        }
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "select",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": -0.5,
+          "max": 0.5
+        }
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b"
+    },
+    {
+      "title": "Chart 102 a - How is chronic absenteeism related to PSAT participation?",
+      "subtype": "column/classic",
+      "oid": "5dfc48d59405e52ce4495a51",
+      "desc": null,
+      "source": "5dfc48d59405e52ce4495a52",
+      "datasource": {
+        "title": "GLAD TN_SHELBY restored",
+        "fullname": "live:GLAD TN_SHELBY restored",
+        "id": "live:GLAD TN_SHELBY restored",
+        "live": true
+      },
+      "selection": null,
+      "metadata": {
+        "ignore": {
+          "dimensions": [],
+          "all": false
+        },
+        "panels": [
+          {
+            "name": "categories",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEAR_DISPLAY",
+                  "dim": "[Dim Dates.SCHOOL_YEAR_DISPLAY]",
+                  "datatype": "text",
+                  "title": "School Year"
+                },
+                "format": {
+                  "members": {
+                    "0": {
+                      "color": "#fac500",
+                      "title": "0",
+                      "sortData": 0
+                    },
+                    "1": {
+                      "color": "#ff595d",
+                      "title": "1",
+                      "sortData": 1
+                    },
+                    "2019-2020": {
+                      "color": "#008ceb",
+                      "title": "2019-2020",
+                      "sortData": "2019-2020",
+                      "inResultset": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "values",
+            "items": [
+              {
+                "jaql": {
+                  "type": "measure",
+                  "formula": "([3C17E-653] , [8DDAA-1E1]) /\n([3C17E-653] )",
+                  "context": {
+                    "[3C17E-653]": {
+                      "table": "Fact Features",
+                      "column": "STUDENT_UUID",
+                      "dim": "[Fact Features.STUDENT_UUID]",
+                      "datatype": "text",
+                      "title": "# of unique STUDENT_UUID",
+                      "agg": "count"
+                    },
+                    "[8DDAA-1E1]": {
+                      "table": "Fact Features",
+                      "column": "PSAT_TAKEN",
+                      "dim": "[Fact Features.PSAT_TAKEN]",
+                      "datatype": "numeric",
+                      "title": "PSAT_TAKEN",
+                      "filter": {
+                        "explicit": true,
+                        "multiSelection": true,
+                        "members": [
+                          "1"
+                        ]
+                      },
+                      "collapsed": false,
+                      "datasource": {
+                        "title": "GLAD TN_SHELBY restored",
+                        "fullname": "live:GLAD TN_SHELBY restored",
+                        "id": "live:GLAD TN_SHELBY restored",
+                        "live": true
+                      }
+                    }
+                  },
+                  "title": "Percent Taking PSAT"
+                },
+                "format": {
+                  "mask": {
+                    "decimals": 1,
+                    "percent": true,
+                    "percentMultiplier": 100
+                  },
+                  "color_bkp": {
+                    "color": "#008ceb",
+                    "type": "color"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "break by",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "CHRONIC_ABSENT",
+                  "dim": "[Fact Features.CHRONIC_ABSENT]",
+                  "datatype": "numeric",
+                  "title": "CHRONIC_ABSENT"
+                },
+                "format": {
+                  "members": {
+                    "0": {
+                      "color": "#008ceb",
+                      "title": "0",
+                      "sortData": 0,
+                      "inResultset": true
+                    },
+                    "1": {
+                      "color": "#1ada9e",
+                      "title": "1",
+                      "sortData": 1,
+                      "inResultset": true
+                    },
+                    "2019-2020": {
+                      "color": "#008ceb",
+                      "title": "2019-2020",
+                      "sortData": "2019-2020"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "filters",
+            "items": [
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "CHRONIC_ABSENT",
+                  "dim": "[Fact Features.CHRONIC_ABSENT]",
+                  "datatype": "numeric",
+                  "title": "CHRONIC_ABSENT",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0",
+                      "1"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                },
+                "disabled": false
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "OUTCOME",
+                  "dim": "[Fact Features.OUTCOME]",
+                  "datatype": "text",
+                  "title": "OUTCOME",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "current"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Dim Dates",
+                  "column": "SCHOOL_YEARS_AGO",
+                  "dim": "[Dim Dates.SCHOOL_YEARS_AGO]",
+                  "datatype": "numeric",
+                  "title": "SCHOOL_YEARS_AGO",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "0"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              },
+              {
+                "jaql": {
+                  "table": "Fact Features",
+                  "column": "LATEST_RUN",
+                  "dim": "[Fact Features.LATEST_RUN]",
+                  "datatype": "text",
+                  "title": "LATEST_RUN",
+                  "filter": {
+                    "explicit": true,
+                    "multiSelection": true,
+                    "members": [
+                      "true"
+                    ]
+                  },
+                  "collapsed": false,
+                  "datasource": {
+                    "title": "GLAD TN_SHELBY restored",
+                    "fullname": "live:GLAD TN_SHELBY restored",
+                    "id": "live:GLAD TN_SHELBY restored",
+                    "live": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "type": "chart/column",
+      "iconSmall": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "iconSmallWizard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDOTk4NjMxNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDOTk4NjMyNzU1MTExRTM4QkE0QjUwRjg4NjAzOUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUM5OTg2MkY3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUM5OTg2MzA3NTUxMTFFMzhCQTRCNTBGODg2MDM5QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ed6mDAAACVUlEQVR42uyYzytmURjHXWPCbsTkHxAyG1Ga1SSr2chWJFnIu2AW76zFQkqzkCl2RLGXpYVSFhZIfkzZyMbPMRYkkVyfh0P3feec+97z3iMppz6d4znnfu/z3POcHy/P9/2ct1xyc956kRmAev+xVL/EO77UNtSDD9Wufc+LKfCRqgxEZ9fzvEvHgafob68uXDpJIXEc+mkewx/YgH/YJqDYhePwnz62CSiOFQAOfqCagz4oCnTlQwcsM6YkhvMZ9RlTEmcGfsD3kH6Z8pEYE2Cln2f4yoVKSKZrhNzeD3QnIjjRjEYPz50ZvnKKPrltrY9GD/WZaREPQFK1v8FXFVgBVXnE7bkKlmz0ccpa35RClYF2RaB9Z5EKYWOd6ZsCkByTLUuO6cEnIylxQ7UZQVzGbYX0a/VJJWt9bQA4Ok/1WXYB2r/Sun9HeMEUz52bOnH0WZ92Vvo8d25cxCqIK6orTde4yts2w6Nr8DOTBzjgRD83w57fCutwCDNQSmAy7e3QLadjYPhfGJKXM+Yi4p7fCutwCDNQSmAZ9RlzEbqNKuebqKYDphZZcNjrcFAW0KigDi3ROVH2qAeWVh97HQ4+66tD60Ff2VNK2F2oU2OrhRpYCaTaaZYHViR9nD7N9jpdYLDnO7qrOdEPC2BWYzsIfp2YxYl+WABjMAy36u8daCRlrh0FoNUnZaz0w7ZRWTBJFmkv9ae0+1DsohZkkkX6oJ92H8o6gAQOH5l+/ViUPQKe1NgTOHxk2JWs9Al4UhdAl6MPvAi6AJzre+//lXjlci/AAOnMDanQIR59AAAAAElFTkSuQmCC",
+      "style": {
+        "legend": {
+          "enabled": true,
+          "position": "bottom"
+        },
+        "seriesLabels": {
+          "enabled": true,
+          "rotation": 0,
+          "labels": {
+            "enabled": false,
+            "stacked": false,
+            "stackedPercentage": false,
+            "types": {
+              "count": false,
+              "relative": false,
+              "percentage": false,
+              "totals": false
+            }
+          }
+        },
+        "xAxis": {
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": false,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "x2Title": {
+            "enabled": false
+          },
+          "gridLines": true,
+          "isIntervalEnabled": false
+        },
+        "yAxis": {
+          "inactive": false,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": true,
+            "text": "Percent of Students Taking the PSAT"
+          },
+          "gridLines": true,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "min": 0,
+          "hideMinMax": false
+        },
+        "y2Axis": {
+          "inactive": true,
+          "enabled": true,
+          "ticks": true,
+          "labels": {
+            "enabled": true,
+            "rotation": 0
+          },
+          "title": {
+            "enabled": false
+          },
+          "gridLines": false,
+          "logarithmic": false,
+          "isIntervalEnabled": true,
+          "hideMinMax": false
+        },
+        "navigator": {
+          "enabled": true
+        },
+        "dataLimits": {
+          "seriesCapacity": 50,
+          "categoriesCapacity": 100000
+        },
+        "lineWidth": {
+          "width": "thick"
+        },
+        "markers": {
+          "enabled": true,
+          "fill": "filled",
+          "size": "large"
+        },
+        "narration": {
+          "enabled": false,
+          "display": "above",
+          "format": "bullets",
+          "verbosity": "medium",
+          "up_sentiment": "good",
+          "aggregation": "sum",
+          "labels": [
+            {
+              "id": "school_year",
+              "title": "School Year",
+              "singular": "School Year",
+              "plural": "School Year"
+            },
+            {
+              "id": "chronic_absent",
+              "title": "CHRONIC_ABSENT",
+              "singular": "CHRONIC_ABSENT",
+              "plural": "CHRONIC_ABSENT"
+            },
+            {
+              "id": "outcome",
+              "title": "OUTCOME",
+              "singular": "OUTCOME",
+              "plural": "OUTCOME"
+            },
+            {
+              "id": "school_years_ago",
+              "title": "SCHOOL_YEARS_AGO",
+              "singular": "SCHOOL_YEARS_AGO",
+              "plural": "SCHOOL_YEARS_AGO"
+            },
+            {
+              "id": "latest_run",
+              "title": "LATEST_RUN",
+              "singular": "LATEST_RUN",
+              "plural": "LATEST_RUN"
+            }
+          ]
+        }
+      },
+      "instanceid": "2FECF-1537-8E",
+      "queryStartTime": "2019-12-19T23:06:48",
+      "disableSelctor": false,
+      "drillToDashboardConfig": {
+        "drilledDashboardPrefix": "_drill",
+        "drilledDashboardsFolderPrefix": "",
+        "displayFilterPane": true,
+        "displayDashboardsPane": true,
+        "displayToolbarRow": true,
+        "displayHeaderRow": true,
+        "volatile": false,
+        "hideDrilledDashboards": true,
+        "hideSharedDashboardsForNonOwner": true,
+        "drillToDashboardMenuCaption": "Jump to dashboard",
+        "drillToDashboardRightMenuCaption": "Jump to ",
+        "drillToDashboardNavigateType": 1,
+        "drillToDashboardNavigateTypePivot": 2,
+        "drillToDashboardNavigateTypeCharts": 1,
+        "drillToDashboardNavigateTypeOthers": 3,
+        "excludeFilterDims": [],
+        "includeFilterDims": [],
+        "drilledDashboardDisplayType": 2,
+        "dashboardIds": [],
+        "modalWindowResize": false,
+        "showFolderNameOnMenuSelection": false,
+        "resetDashFiltersAfterJTD": false,
+        "sameCubeRestriction": true,
+        "showJTDIcon": true,
+        "sendPieChartMeasureFiltersOnClick": true,
+        "forceZeroInsteadNull": false,
+        "mergeTargetDashboardFilters": false
+      },
+      "chart": {
+        "0": {
+          "sizzle-1576814714552": {
+            "parentNode": [
+              "2614 26",
+              97
+            ]
+          }
+        },
+        "context": {
+          "sizzle-1576814714552": {
+            "parentNode": [
+              "2614 26",
+              97
+            ]
+          }
+        },
+        "length": 1
+      },
+      "widgetTimingLoged": false,
+      "continuousDates": false,
+      "nullAsZero": false,
+      "forcedRedraw": false,
+      "realTimeRefreshing": false,
+      "refreshRate": 30000,
+      "script": "/* List of labels old = new */\nconst newLabels = {\n\t'0':'Not Chronically Absent',\n\t'1':'Chronically Absent',\n};\n\n\n/* Rename x-axis categories:\n\t1 category: working\n\t2 categories - position 1: Not working\n\t2 categories - position 2: working\n*/\n\nwidget.on('processresult', function (se, ev) {\n\t\n\tvar dbLabels = ev.result.xAxis.categories;\n\n\tdbLabels.forEach((VALUE, index) => { \n\t\t\t\t\n\t\t if (newLabels[VALUE] !== undefined) {\n\t\t\t dbLabels[index] = newLabels[VALUE];\n\t\t } else {\n\t\t\tconsole.log('undef label');\n\t\t }\n\t });\n});\n\n/* Rename break-by */\nwidget.on('processresult', function (se, ev) {\n\t\t\n\tvar dbLabels = ev.result.series;\n\n\tdbLabels.forEach((VALUE, index) => {\n\n\t\t if (newLabels[VALUE.name] !== undefined) {\n\t\t\t dbLabels[index].name = newLabels[VALUE.name];\n\t\t } else {\n\t\t\tconsole.log('undef label');\n\t\t }\n\t});\n});\n",
+      "displayMenu": true,
+      "custom": {
+        "barcolumnchart": {
+          "customMenuEnabled": false,
+          "updateOnEveryChange": true,
+          "addTotalOption": "No",
+          "sortCategoriesOption": "Default",
+          "sortBreakByOption": "Default",
+          "currModalOpened": "None",
+          "totalSeriesName": "Total",
+          "type": "chart/column",
+          "isTypeValid": true
+        }
+      },
+      "drawing": true,
+      "options": {
+        "dashboardFiltersMode": "select",
+        "selector": true,
+        "triggersDomready": true,
+        "autoUpdateOnEveryChange": true,
+        "drillToAnywhere": true,
+        "previousScrollerLocation": {
+          "min": -0.5,
+          "max": 0.5
+        }
+      },
+      "dashboardid": "5ddc6a153bb3ff20cc65483b",
+      "canEditFilters": true
+    }
+  ],
+  "allowChangeSubscription": false,
+  "subscription": {
+    "isDataChange": false,
+    "type": "daily",
+    "schedule": "0 00 22 * * *",
+    "timezone": 300,
+    "tzName": "America/New_York",
+    "context": {
+      "dashboardid": "5ddc6a153bb3ff20cc65483b"
+    },
+    "active": false,
+    "executionPerDay": 1,
+    "reportType": {
+      "inline": true
+    },
+    "emailSettings": {
+      "isEmail": true,
+      "isPdf": false
+    },
+    "subscribe": false
+  },
+  "isPublic": null,
+  "defaultFilters": [],
+  "lastPublish": "2020-01-02T18:57:09.778Z",
+  "hierarchies": []
+}
